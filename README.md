@@ -27,7 +27,7 @@
 ## 感激
 感谢以下的项目,排名不分先后
 
-* Chang JiuLong
+* Chang Jiulong
 * Wei Yinfu
 
 ## 关于作者
