@@ -12,7 +12,7 @@ import java.util.TreeSet;
 *
 * */
 
-public class Test {
+public class Permutation{
     /*
     * 算法思路：
     * 我们要求整个字符串的排列，可以看成两步：首先求所有可能出现在第一个位置的字符，即把第一个字符和后面所有的字符交换。
