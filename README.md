@@ -33,7 +33,7 @@
 ## 关于作者
 
 ```javascript
-  var ihubo = {
+  var peanut = {
     nickName  : "回忆太瘦",
     site : "http://wangzhh.cn"
   }
