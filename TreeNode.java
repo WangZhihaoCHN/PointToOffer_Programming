@@ -1,7 +1,5 @@
-package com.peanut.offer;
-
 /**
- * Created by peanut on 2017/4/9.
+ * Created by WangZhihao on 2017/4/9.
  */
 public class TreeNode {
     int val = 0;
