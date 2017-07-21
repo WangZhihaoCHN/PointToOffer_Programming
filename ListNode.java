@@ -1,7 +1,6 @@
-package com.peanut.offer;
 
 /**
- * Created by peanut on 2017/7/21.
+ * Created by Wangzhihao on 2017/7/21.
  */
 public class ListNode {
     int val;
