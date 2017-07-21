@@ -29,7 +29,7 @@ public class Solution {
             p1 = p1.next;
             p2 = p2.next;
         }
-
+        
         /*
          * 如果p1不空，则pHead1链表长，p1到链表尾部的长度，即为差值.
          * 因此只需要p1继续向后移，而将p2重置为pHead2，然后跟随p1一
