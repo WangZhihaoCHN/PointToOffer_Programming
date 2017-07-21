@@ -1,5 +1,3 @@
-package com.peanut.offer;
-
 /**
  * Created by WangZhihao on 2017/4/9.
  *
