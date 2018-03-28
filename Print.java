@@ -1,78 +1,62 @@
 /*
 *
 * 题目描述：
-*      请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，
-* 第三行按照从左到右的顺序打印，其他行以此类推。
+*      从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
 *
 * */
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Test {
     /*
     * 算法思路：
-    *     利用两个栈S1和S2分别存放奇数层和偶数层的树节点。
+    *     层次遍历二叉树。
+    *     使用一个队列保存每层节点的子结点，入队列顺序为先左儿子后右儿子。
+    *     在树的每一层，记录队列中结点的个数num，然后依次取出上一层的父结点，
+    * 打印val值，并将其子节点入队列。当取出了num个结点后，本层结束，重复上述
+    * 步骤，直至完成。
+    *
     *  */
-    public static ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
+    public static ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
-
         // 异常输入
         if(pRoot == null)
             return ret;
 
-        Stack<TreeNode> s1 = new Stack<>();
-        Stack<TreeNode> s2 = new Stack<>();
-        int layer = 1;
-        s1.push(pRoot);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(pRoot);
 
-
-        while (!s1.empty() || !s2.empty()){
-            ArrayList<Integer> temp = new ArrayList<>();
-            TreeNode node;
-            if(layer%2 == 1){           // 奇数层
-                // 从栈中依次取所有元素，打印对应val值，并将左儿子-右儿子压入偶数栈s2
-                while(!s1.empty()){
-                    node = s1.pop();
-                    if(node == null)
-                        continue;
-                    temp.add(node.val);
-                    s2.push(node.left);
-                    s2.push(node.right);
-                }
-                //最后一行存在叶子节点的儿子均为空的状况，栈可以压入null占位，因此需要避免打印这样的空行
-                if(temp.isEmpty())
-                    continue;
-                // 将当前行加入返回值中，并将层数加一
-                ret.add(temp);
-                layer += 1;
-            }else{                      // 偶数层
-                // 从栈中依次取所有元素，打印对应val值，并将右儿子-左儿子压入偶数栈s2
-                while(!s2.empty()){
-                    node = s2.pop();
-                    if(node == null)
-                        continue;
-                    temp.add(node.val);
-                    s1.push(node.right);
-                    s1.push(node.left);
-                }
-                if(temp.isEmpty())
-                    continue;
-                // 将当前行加入返回值中，并将层数加一
-                ret.add(temp);
-                layer += 1;
+        ArrayList<Integer> line;
+        int size;
+        TreeNode node;
+        while(!queue.isEmpty()){
+            size = queue.size();
+            line = new ArrayList<>();
+            for(int i=0; i<size; i++){
+                node = queue.poll();
+                line.add(node.val);
+                System.out.print(node.val+" ");
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                queue.offer(node.right);
             }
+            ret.add(line);
+            System.out.println();
         }
+
         return ret;
     }
 
-        public static void main(String args[]) {
-            TreeNode t1 = new TreeNode(1);
-            TreeNode t2 = new TreeNode(2);
-            TreeNode t3 = new TreeNode(3);
-            TreeNode t4 = new TreeNode(4);
-            t1.left = t2;
-            t1.right = t3;
-            t2.left = t4;
-            Print(t1);
+    public static void main(String args[]) {
+        TreeNode t1 = new TreeNode(1);
+        TreeNode t2 = new TreeNode(2);
+        TreeNode t3 = new TreeNode(3);
+        TreeNode t4 = new TreeNode(4);
+        t1.left = t2;
+        t1.right = t3;
+        t2.left = t4;
+        Print(t1);
     }
 }
